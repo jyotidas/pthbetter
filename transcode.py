@@ -236,18 +236,37 @@ def get_transcode_dir(flac_dir, output_dir, output_format, resample):
     if not found:
         transcode_dir = transcode_dir + " (" + output_format + ")"
     if resample:
-        if '24-96' in flac_dir or '2496' in flac_dir or '9624' in flac_dir or '96-24' in flac_dir or '24 96' in flac_dir or '24-192' in flac_dir or '24 48' in flac_dir:
-            transcode_dir = transcode_dir.replace('24-96', '16-48')
-            transcode_dir = transcode_dir.replace('2496', '1648')
-            transcode_dir = transcode_dir.replace('96-24', '48-16')
-            transcode_dir = transcode_dir.replace('9624', '4816')
-            transcode_dir = transcode_dir.replace('24 96', '16 48')
-            transcode_dir = transcode_dir.replace('24-192', '16-48')
-            transcode_dir = transcode_dir.replace('24 48', '16 48')
-        if '24bit' in flac_dir or '96kHz' in flac_dir or '192kHz' in flac_dir or '48kHz' in flac_dir:
-            transcode_dir = transcode_dir.replace('24bit', '16bit')
-            transcode_dir = transcode_dir.replace('96kHz', '48kHz')
+        if '24-96' in flac_dir or '2496' in flac_dir or '24 44' in flac_dir or '2444' in flac_dir or '24-44' in flac_dir or '9624' in flac_dir or '96-24' in flac_dir or '24 96' in flac_dir or '24-192' in flac_dir or '24 48' in flac_dir or '24bit' in flac_dir or '24-bit' in flac_dir or '24 bit' in flac_dir or '96kHz' in flac_dir or '192kHz' in flac_dir or '48kHz' in flac_dir or '-24]' in flac_dir or '24-88' in flac_dir or '2488' in flac_dir or '88-24' in flac_dir or '8824' in flac_dir or '24 88' in flac_dir or '24-192' in flac_dir or '24192' in flac_dir or '192-24' in flac_dir or '19224' in flac_dir or '24 192' in flac_dir or 'FLAC24' in flac_dir:
+            transcode_dir = transcode_dir.replace('-24]', '-16]')
+            transcode_dir = transcode_dir.replace('192-24', '16-48')
+            transcode_dir = transcode_dir.replace('19224', '16-48')
             transcode_dir = transcode_dir.replace('192kHz', '48kHz')
+            transcode_dir = transcode_dir.replace('24 192', '16-48')
+            transcode_dir = transcode_dir.replace('24 44', '16-44')
+            transcode_dir = transcode_dir.replace('24 48', '16-48')
+            transcode_dir = transcode_dir.replace('24 88', '16-44')
+            transcode_dir = transcode_dir.replace('24 96', '16-48')
+            transcode_dir = transcode_dir.replace('24-192', '16-48')
+            transcode_dir = transcode_dir.replace('24-44', '16-44')
+            transcode_dir = transcode_dir.replace('24-88', '16-44')
+            transcode_dir = transcode_dir.replace('24-96', '16-48')
+            transcode_dir = transcode_dir.replace('24192', '16-48')
+            transcode_dir = transcode_dir.replace('2444', '16-44')
+            transcode_dir = transcode_dir.replace('2448', '16-44')
+            transcode_dir = transcode_dir.replace('2496', '16-48')
+            transcode_dir = transcode_dir.replace('24bit', '16bit')
+            transcode_dir = transcode_dir.replace('24-bit', '16bit')
+            transcode_dir = transcode_dir.replace('24 bit', '16bit')
+            transcode_dir = transcode_dir.replace('88-24', '16-44')
+            transcode_dir = transcode_dir.replace('8824', '16-44')
+            transcode_dir = transcode_dir.replace('88kHz', '44kHz')
+            transcode_dir = transcode_dir.replace('96-24', '16-48')
+            transcode_dir = transcode_dir.replace('9624', '16-48')
+            transcode_dir = transcode_dir.replace('96kHz', '48kHz')
+            transcode_dir = transcode_dir.replace('FLAC24', 'FLAC')
+        else:
+            transcode_dir = transcode_dir.replace('FLAC', '16bit FLAC')
+
 
     return os.path.join(output_dir, transcode_dir)
 
